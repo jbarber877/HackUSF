@@ -12,7 +12,12 @@ html, body {
     box-sizing: border-box;
 }
 
-
+.flashcard {
+    border: 3px solid #ffb9b0; /* A subtle border with a light pink color */
+    border-radius: 10px; /* Rounded corners for a softer look */
+    padding: 20px; /* Inner spacing to give content room */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+}
 header {
     position: fixed;
     top: 0;
