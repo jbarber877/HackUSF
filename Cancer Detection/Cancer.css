@@ -102,6 +102,7 @@ span {
     max-width: 1200px; /* Prevent container from becoming too wide on larger screens */
     gap: 50px;
     margin-top: 80px; /* Offset the fixed navbar */
+    text-align:center;
 }
 
 /* Image Styling */
@@ -138,7 +139,6 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     text-align: center;
-    margin-left:11em;
 }
 .custom-file-upload:hover{
     color: #ffb9b0;
