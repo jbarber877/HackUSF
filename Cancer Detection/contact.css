@@ -102,10 +102,6 @@ span {
     color: #ffb9b0;
 }
 
-.identifier{
-    color: #ffb9b0;
-    text-shadow: 0 0 20px #ffb9b0;
-}
 
 /* Container Style */
 .container {
@@ -117,16 +113,9 @@ span {
     max-width: 1200px; /* Prevent container from becoming too wide on larger screens */
     gap: 50px;
     margin-top: 80px; /* Offset the fixed navbar */
+    flex-direction:column;
 }
 
-/* Image Styling */
-#Cell {
-    width: 90%;
-    max-width: 600px; /* Max width for the image */
-    height: auto;
-    margin: 0;
-    border-radius: 8px;
-}
 
 #text-Container{
     display:block;
