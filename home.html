@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Tumor Classification</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> <!-- TensorFlow.js -->
+    
+    <link rel="stylesheet" href="Index.css">
+
+</head>
+<body>
+    <div class="classification">
+    <h1>Upload an Image for Tumor Classification</h1>
+    
+    <!-- Form to upload image -->
+    
+    <input type="file" id="image" accept="image/*" required>
+    <button onclick="classifyImage()">Classify Image</button>
+    
+    <h3>Result: <span id="result">Pending</span></h3>
+    </div>
+    
+    <script>
+        let model;
+
+        // Load the TensorFlow.js model
+        async function loadModel() {
+            model = await tf.loadLayersModel('model/model.json');
+            console.log('Model Loaded');
+        }
+
+        // Call the model classification function after the model is loaded
+        async function classifyImage() {
+            if (!model) {
+                document.getElementById('result').textContent = 'Model not loaded yet';
+                return;
+            }
+
+            const fileInput = document.getElementById('image');
+            if (fileInput.files.length === 0) {
+                document.getElementById('result').textContent = 'Please upload an image';
+                return;
+            }
+
+            const imageFile = fileInput.files[0];
+            const img = await loadImage(imageFile);
+
+            // Preprocess the image (resize and normalize)
+            const tensor = tf.browser.fromPixels(img)
+                .resizeNearestNeighbor([224, 224]) // Resize to match model input size
+                .toFloat()
+                .div(tf.scalar(255.0)) // Normalize the image
+                .expandDims(0); // Add batch dimension
+
+            // Classify the image using the loaded model
+            const prediction = model.predict(tensor);
+            const classIndex = prediction.argMax(1).dataSync()[0];
+
+            const result = classIndex === 0 ? 'Benign' : 'Malignant';
+            document.getElementById('result').textContent = result;
+        }
+
+        // Load an image and return it as an Image element
+        function loadImage(file) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        // Load the model when the page is ready
+        loadModel();
+    </script>
+</body>
+</html>
