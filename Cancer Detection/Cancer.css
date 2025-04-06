@@ -121,12 +121,16 @@ input[type="file"] {
 .custom-file-upload {
     border: 1px solid #ccc;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 15px 21px;
     cursor: pointer;
     text-align: center;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Apply text shadow */
+    background-color: #ffb9b0dc;
 }
 .custom-file-upload:hover{
-    color: #ffb9b0;
+    color: black;
+    background-color: #ffb9b0;
 }
 #text-Container{
     display:block;
