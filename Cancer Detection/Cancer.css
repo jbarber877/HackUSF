@@ -138,6 +138,14 @@ input[type="file"] {
     margin-right:auto;
 }
 
+#credits p {
+    margin: 0; /* Remove default margin to keep the text centered */
+}
+#credits a{
+    color: #ffb9b0; /* Set the color of the anchor tag */
+    text-decoration: none; /* Optional: Removes the underline from the link */
+}
+
 /* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
     h1, p {
